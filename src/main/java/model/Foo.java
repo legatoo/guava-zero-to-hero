@@ -61,4 +61,13 @@ public class Foo {
         final Foo other = (Foo) obj;
         return Objects.equal(this.id, other.id);
     }
+
+    @Override
+    public String toString() {
+        return "Foo{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", members=" + members +
+                '}';
+    }
 }
