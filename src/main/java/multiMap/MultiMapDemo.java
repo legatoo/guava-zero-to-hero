@@ -68,6 +68,7 @@ public class MultiMapDemo {
         Multimap<Integer, String> sorted  = MultimapBuilder.ListMultimapBuilder.treeKeys().arrayListValues().build();
         sorted = Multimaps.index(digits, lengthFunction);
 
+        //first sort origin collection using sort function, then index, the result will be in the same order
         ImmutableMultimap<Integer, String> lengthToString2 = Multimaps.index(
                 Ordering.natural().onResultOf(lengthFunction).sortedCopy(digits),
                 lengthFunction);
