@@ -15,6 +15,6 @@ public class BloomFilterDemo {
         BloomFilter<Integer> bloomFilter = BloomFilter.create(Funnels.integerFunnel(), 100000);
         bloomFilter.put(159746);
         System.out.println(bloomFilter.mightContain(159746));
-        bloomFilter.
+        bloomFilter.mightContain(159746);
     }
 }

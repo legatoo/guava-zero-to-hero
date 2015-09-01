@@ -1,9 +1,11 @@
 package demos;
 
 import com.google.common.base.Function;
+import com.google.common.base.Throwables;
 import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import com.sun.istack.internal.NotNull;
+import exception.MyException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +20,7 @@ import static java.lang.System.out;
  * Time: 11:37 AM
  */
 public class ListTransformDemo {
-    private static final class MyFunction implements Function<Node, Integer>{
+    private static final class MyFunction implements Function<Node, Integer> {
         public Integer apply(@NotNull Node input) {
             return input.getId();
         }
@@ -82,5 +84,25 @@ public class ListTransformDemo {
         out.println("Gson str from view:" + gsonObject_view.toJson(nodeIds_view));
         Gson gsonObject_copy = new Gson();
         out.println("Gson str forom copy: " + gsonObject_copy.toJson(nodeIds_supportCopy));
+
+        out.println("nodes: " + nodes);
+        Function<Node, Integer> exceptionFunction = new Function<Node, Integer>() {
+            public Integer apply(Node input) {
+                try {
+                    input.strangeGet(); //checked exception has to be handled
+                    return input.getId();
+                } catch (MyException e) {
+                    //throw MyException("my exception");
+                    throw Throwables.propagate(e);
+                }
+
+            }
+        };
+
+        //单纯下面一句话是不会触发异常的，因为transform是lazy的
+        List<Integer> ids = Lists.transform(nodes, exceptionFunction);
+        //一个需要被检查的异常在apply中被吞掉了，变成了一个运行时异常，这里需要注意，把返回的东西提前拷贝出来可以让异常发生
+        //或者手动捕捉异常
+        out.println(ids);
     }
 }

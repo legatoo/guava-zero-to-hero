@@ -1,5 +1,7 @@
 package demos;
 
+import exception.MyException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +49,10 @@ public class Node {
 
     public void setTransientInt(int transientInt) {
         this.transientInt = transientInt;
+    }
+
+    public void strangeGet() throws MyException{
+        throw new MyException("Custom Exception.");
     }
 
     @Override public String toString() {
