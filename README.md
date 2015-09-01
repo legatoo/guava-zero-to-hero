@@ -1,1 +1,1 @@
-This repository contains code when I play with Google Guava. If you would like to contribute, contact me via Daxiana.
+This repository contains code when I play with Google Guava. 
