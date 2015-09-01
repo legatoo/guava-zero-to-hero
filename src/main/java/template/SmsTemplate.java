@@ -8,5 +8,5 @@ package template;
  * Time: 5:29 PM
  */
 public class SmsTemplate {
-    public static final String SMS = "Dear {hotel}, you have a new order. Customer {customer} books {room} for {night_num} nights.";
+    public static final String SMS = "Dear {hotel}, you have a new order. Customer {customer} books {room} for {night_num} nights. This {missing}";
 }

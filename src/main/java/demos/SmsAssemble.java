@@ -27,7 +27,7 @@ public class SmsAssemble {
         String patternStr = "(\\{([^\\}]+)})";
         Matcher matcher = Pattern.compile(patternStr).matcher(SmsTemplate.SMS);
         StringBuffer sb = new StringBuffer();
-        Function<String, String> lookup = Functions.forMap(smsParts, "");
+        Function<String, String> lookup = Functions.forMap(smsParts, "is right.");
 
         while (matcher.find()){
             matcher.appendReplacement(sb, lookup.apply(matcher.group(2)));
